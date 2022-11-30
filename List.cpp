@@ -18,13 +18,17 @@
  using std::endl;
 
  // Constructor
- List::List(unsigned int (*hFcn)(string));
+ List::List(unsigned int (*hFcn)(string)): hashFcn(hFcn){} // save the hash function address
 
  // Destructor
  List::~List(){
     if(hashTable != nullptr){
         delete [] hashTable;
         hashTable = nullptr;
+    }
+    if(collision != nullptr){
+        delete [] collision;
+        collison = nullptr;
     }
  }
 
@@ -40,19 +44,48 @@
  List::void insert(Member & newElement){
     if(elementCount == 0){
         hashTable = new Memeber[CAPACITY];
+        if(hashTable == nullptr){
+            return;
+        }
+        collision = new unsigned int[CAPACITY];
+        if(collision == nullptr){
+            return;
+        }
+        for(int i = 0; i < CAPACITY; i++){
+            hashTable[i] = "";
+            collision[i] = 0;
+        }
     }
-    if(hashTable == nullptr){
-        return;
-    }
-    for(int i = 0; i < CAPACITY; i++){
-        hashTable[i] = "";
-    }
-    // resize if full;
 
+    // resize if full
+    if(collision == CAPACITY){
+        CAPACITY *= 2;
+        unsigned int* temp = new unsigned int[CAPACITY];
+        for(int i = 0; i < elementCount; i++ ){
+            temp[i] = collision[i];
+        }
+        collision = temp;
+    }
+
+    if(hashTable == CAPACITY){
+        CAPACITY *= 2;
+        Memeber* temp = new Member[CAPACITY];
+        for(int i = 0; i < elementCount; i ++){
+            temp[i] = hashtable[i];
+        }
+        hashTable = temp;
+    }
+
+    // call the hash function using indexing key to get hash index
     unsigned int hashIndex = (*hashFcn)(newElement);
 
+    // insert newElement into hashtable at hashindex
     hashTable[hashIndex] = newElement;
 
+    // increment the collision counter at hash index
+    collision[hashIndex]++;
+
+    // increment the elementCount 
     elementCount++;
 
     return;

@@ -32,6 +32,9 @@ private:
   unsigned int elementCount = 0;            // Current number of elements stored into Data Collection.
   unsigned int (*hashFcn)(string name);     // Pointer to hash function.
 
+  unsigned int * collision = nullptr; // Record the number of time a hash function produces a certain hash index.
+
+  
 public:
 
 /* 
@@ -40,7 +43,7 @@ public:
  * 
  */
 
-  constexpr static unsigned int CAPACITY = 100;  // Size of hashTable - underlying data structure (array) of List.
+  constexpr static unsigned int CAPACITY = 103;  // Size of hashTable - underlying data structure (array) of List.
   
   // Constructor
   List(unsigned int (*hFcn)(string));
