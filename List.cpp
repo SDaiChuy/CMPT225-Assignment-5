@@ -12,6 +12,7 @@
  */
 
  #include "List.h"
+ #include "Member.h"
  #include <iostream>
 
  using std::cout;
@@ -34,16 +35,16 @@
 
  // Description: Return the total element count currently stored in List.
  // Postconditions: List remains unchanged
- List::unsigned int getElementCount()const{
+ unsigned int List::getElementCount()const{
     return elementCount;
  }
  
  // Description: insert an element.
  // Preconditions: newElement must not aready be in the list
  // Postconditions: newElement inserted and elementCount has been incremented
- List::void insert(Member & newElement){
+ void List:: insert(Member & newElement){
     if(elementCount == 0){
-        hashTable = new Memeber[CAPACITY];
+        hashTable = new Member[CAPACITY];
         if(hashTable == nullptr){
             return;
         }
@@ -93,7 +94,7 @@
  
  // Description: Returns a pointer to the target element if found.
  // Postconditions: List remains unchanged
- List::Member* search(Member & target){
+ Member* List:: search(Member & target){
     Member* result = nullptr
     bool found = true;
     for(int i = 0; i < getElementCount() && !found; i++){
@@ -107,7 +108,7 @@
  
  // Description: Print all elements stored in the List (unsorted)
  // Postconditions: List remains unchanged
- List::void printList() const{
+ void List:: printList() const{
     for(int i = 0; i < getElementCount(); i++){
         cout << hashTable[i];
     }
