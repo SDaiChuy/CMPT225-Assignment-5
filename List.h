@@ -22,7 +22,7 @@
 class List  {
 
 private:
-
+ 
 /* 
  * For experimentation purposes, you can add private data members to this List class.
  */
@@ -43,7 +43,7 @@ public:
  * 
  */
 
-  constexpr static unsigned int CAPACITY = 103;  // Size of hashTable - underlying data structure (array) of List.
+  unsigned int CAPACITY = 103;  // Size of hashTable - underlying data structure (array) of List.
   
   // Constructor
   List(unsigned int (*hFcn)(string));

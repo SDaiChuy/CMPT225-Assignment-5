@@ -1,10 +1,13 @@
 #include <iostream>
 #include "List.h"
-#include "Memeber.h"
+#include "Member.h"
 
-std::cout;
-std::endl;
+using std::cout;
+using std::endl;
 
 int main(){
     
+    cout << "hello world" << endl;
+
+    return 0;
 }

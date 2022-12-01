@@ -28,7 +28,7 @@
     }
     if(collision != nullptr){
         delete [] collision;
-        collison = nullptr;
+        collision = nullptr;
     }
  }
 

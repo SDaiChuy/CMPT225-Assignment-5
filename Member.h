@@ -26,7 +26,7 @@ class Member {
  	
 private:
 
-    constexpr static const int SIZE_OF_PHONE_NUMBER = 12;
+    const int SIZE_OF_PHONE_NUMBER = 12;
 
     string name;                      
     string phone;
